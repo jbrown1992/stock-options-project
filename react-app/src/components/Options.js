@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions/option";
 import { Grid, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, withStyles, ButtonGroup, Button } from "@material-ui/core";
 import OptionForm from "./OptionForm";
+import Stocks from "./Stocks";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useToasts } from "react-toast-notifications";
@@ -27,13 +28,13 @@ const Options = ({ classes, ...props }) => {
     useEffect(() => {
         props.fetchAllOptions()
     }, [])//componentDidMount
-    
+
     //toast msg.
     const { addToast } = useToasts()
 
     const onDelete = id => {
         if (window.confirm('Are you sure to delete this record?'))
-            props.deleteOption(id,()=>addToast("Deleted successfully", { appearance: 'info' }))
+            props.deleteOption(id, () => addToast("Deleted successfully", { appearance: 'info' }))
     }
     return (
         <Paper className={classes.paper} elevation={3}>
@@ -41,9 +42,9 @@ const Options = ({ classes, ...props }) => {
                 <Grid items>
                     <OptionForm {...({ currentId, setCurrentId })} />
                 </Grid>
-                </Grid>
-                <Grid container>
- 
+            </Grid>
+            <Grid container>
+
                 <Grid item>
                     <TableContainer>
                         <Table>
@@ -84,8 +85,13 @@ const Options = ({ classes, ...props }) => {
                                 }
                             </TableBody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer>                   
                 </Grid>
+
+
+            </Grid>
+            <Grid container>
+            <Stocks />
             </Grid>
         </Paper>
     );

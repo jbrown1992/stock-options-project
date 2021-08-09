@@ -15,5 +15,8 @@ namespace StockOptionsApi.Models
         }
 
         public DbSet<Option> Options { get; set; }
+
+        public DbSet<Stock> Stocks { get; set; }
+
     }
 }
